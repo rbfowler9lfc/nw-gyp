@@ -31,13 +31,8 @@ static FARPROC WINAPI load_exe_hook(unsigned int event, DelayLoadInfo* info) {
     return ret;
   }
   if (event == dliStartProcessing) {
-    #ifdef UNICODE
-      node_dll = GetModuleHandle(L"node.dll");
-      nw_dll = GetModuleHandle(L"nw.dll");
-    #else
-      node_dll = GetModuleHandle("node.dll");
-      nw_dll = GetModuleHandle("nw.dll");
-    #endif
+    node_dll = GetModuleHandle(TEXT("node.dll"));
+    nw_dll = GetModuleHandle(TEXT("nw.dll"));
     return NULL;
   }
   if (event != dliNotePreLoadLibrary)
